@@ -29,6 +29,9 @@ export default function Home() {
   const random = () => {
     setPixels(CanvasLib.createRandomCanvas);
   };
+  const disdis = () => {
+    setInterval(random, 100);
+  };
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "GhostWhite" }}>
@@ -43,6 +46,9 @@ export default function Home() {
           </button>
           <button className="btn btn-dark" onClick={random}>
             Random Color
+          </button>
+          <button className="btn btn-dark" onClick={disdis}>
+            Play Disco
           </button>
         </div>
       </PainterContext.Provider>
