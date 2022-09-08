@@ -9,10 +9,9 @@ export default function Home() {
   //selected color from color picker
   //set black color as default
   const [selColor, setSelColor] = useState("#000000");
-
   //16x16 2D Array that holds color data
   const [pixels, setPixels] = useState(CanvasLib.createEmptyCanvas());
-
+  const [intervalId, setIntervalId] = useState(null);
   //will be called by Cell component
   const paint = (xPos, yPos) => {
     //copy from old 2d Array
@@ -20,7 +19,13 @@ export default function Home() {
     newPixels[yPos][xPos] = selColor;
     setPixels(newPixels);
   };
-
+  const disdis = () => {
+    const id = setInterval(random, 100);
+    setIntervalId(id);
+  };
+  const nodisdis = () => {
+    clearInterval(intervalId);
+  };
   const clear = () => {
     //your code here
     //Hint : use CanvasLib.createEmptyCanvas()
@@ -28,9 +33,6 @@ export default function Home() {
   };
   const random = () => {
     setPixels(CanvasLib.createRandomCanvas);
-  };
-  const disdis = () => {
-    setInterval(random, 100);
   };
 
   return (
@@ -49,6 +51,9 @@ export default function Home() {
           </button>
           <button className="btn btn-dark" onClick={disdis}>
             Play Disco
+          </button>
+          <button className="btn btn-dark" onClick={nodisdis}>
+            Stop Disco
           </button>
         </div>
       </PainterContext.Provider>
