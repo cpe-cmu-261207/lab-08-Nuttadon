@@ -11,7 +11,7 @@ export default function Home() {
   const [selColor, setSelColor] = useState("#000000");
   //16x16 2D Array that holds color data
   const [pixels, setPixels] = useState(CanvasLib.createEmptyCanvas());
-  const [intervalId, setIntervalId] = useState(null);
+  const [ids, setIds] = useState([]);
   //will be called by Cell component
   const paint = (xPos, yPos) => {
     //copy from old 2d Array
@@ -21,10 +21,10 @@ export default function Home() {
   };
   const disdis = () => {
     const id = setInterval(random, 100);
-    setIntervalId(id);
+    setIds([...ids, id]);
   };
   const nodisdis = () => {
-    clearInterval(intervalId);
+    for (const id of ids) clearInterval(id);
   };
   const clear = () => {
     //your code here
